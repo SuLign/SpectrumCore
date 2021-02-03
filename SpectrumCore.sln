@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpectrumCore", "SpectrumCore\SpectrumCore.csproj", "{2B85B032-13CB-4613-BA31-D2A3B517F4DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{C2F03434-FB0A-45DE-AEC0-A150034DA6FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B85B032-13CB-4613-BA31-D2A3B517F4DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B85B032-13CB-4613-BA31-D2A3B517F4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B85B032-13CB-4613-BA31-D2A3B517F4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B85B032-13CB-4613-BA31-D2A3B517F4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F03434-FB0A-45DE-AEC0-A150034DA6FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F03434-FB0A-45DE-AEC0-A150034DA6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F03434-FB0A-45DE-AEC0-A150034DA6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F03434-FB0A-45DE-AEC0-A150034DA6FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01280C33-20FB-4BA1-B9C8-B6838AD9E3A9}
+	EndGlobalSection
+EndGlobal
