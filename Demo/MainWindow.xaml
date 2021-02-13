@@ -5,16 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo" xmlns:spectrumcore="clr-namespace:SpectrumCore;assembly=SpectrumCore"
         WindowStyle="None"
+        xmlns:blur="clr-namespace:Blur.Interop"
         AllowsTransparency="True"
         mc:Ignorable="d"
-        Background="#5a000000"
+        blur:WindowBlur.IsEnabled="True"
+        Background="#9a000000"
+        MouseDown="MoveForm"
         Title="MainWindow" Height="450" Width="1300">
     <Grid>
-        <Grid Margin="20" Background="{Binding BackGround}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="20" Grid.Column="0" Background="{Binding BackGround}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <spectrumcore:WaterFallGraphics Grid.Column="0" x:Name="Grapicpannel"/>
+            <spectrumcore:WaterFallGraphics Grid.Column="0" MaxAmplite="400" MinAmplite="-300" x:Name="Grapicpannel"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" TextChanged="TextBox_TextChanged"></TextBox>
         </Grid>
     </Grid>
 </Window>

@@ -37,10 +37,12 @@ namespace SpectrumCore
         private double spectrumResolution;
 
         #region Properties
-        public static readonly DependencyProperty MaxAmpliteProperty = DependencyProperty.Register("MaxAmplite", typeof(double), typeof(WaterFallGraphics), new PropertyMetadata(100000.0));
+        public static readonly DependencyProperty MaxAmpliteProperty = DependencyProperty.Register("MaxAmplite", typeof(double), typeof(WaterFallGraphics), new PropertyMetadata(200.0));
+        public static readonly DependencyProperty MinAmpliteProperty = DependencyProperty.Register("MinAmplite", typeof(double), typeof(WaterFallGraphics), new PropertyMetadata(-600.0));
         public static readonly DependencyProperty BackGroundProperty = DependencyProperty.Register("BackGround", typeof(System.Windows.Media.Color), typeof(WaterFallGraphics), new PropertyMetadata(System.Windows.Media.Colors.Transparent));
 
         public double MaxAmplite { get => (double)GetValue(MaxAmpliteProperty); set => SetValue(MaxAmpliteProperty, value); }
+        public double MinAmplite { get => (double)GetValue(MinAmpliteProperty); set => SetValue(MinAmpliteProperty, value); }
         public double StartFrequency { get => startFrequency; set => startFrequency = value; }
         public double StartAmplite { get => startAmplite; set => startAmplite = value; }
         public double EndFrequency { get => endFrequency; set => endFrequency = value; }
@@ -50,8 +52,6 @@ namespace SpectrumCore
         #endregion
 
         #region event
-        //public new event MouseEventHandler MouseMove;
-        //public new event MouseButtonEventHandler Drop;
 
         #endregion
 
@@ -65,11 +65,15 @@ namespace SpectrumCore
         {
             base.OnRender(drawingContext);
             displayResolutionX = (float)(this.ActualWidth) / dataFrame;
-            displayResolutionY = (float)(this.ActualHeight) / MaxAmplite;
+            displayResolutionY = (float)(this.ActualHeight) / (MaxAmplite - MinAmplite);
             startPoint = 0;
             endPoint = this.ActualWidth;
         }
 
+        /// <summary>
+        /// On wheel slide.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
@@ -116,7 +120,7 @@ namespace SpectrumCore
                 for (int index = 0; index < elements.Length; index++)
                 {
                     List<PointF> pointFs = new List<PointF>();
-                    for (long i = 0; i < elements[index].Points.Length; i++)
+                    for (long i = 0; i < elements[index]?.Points?.Length; i++)
                     {
                         pointFs.Add(GetPointF(i, (float)elements[index].Points[i]));
                     }
@@ -128,8 +132,16 @@ namespace SpectrumCore
         private System.Drawing.PointF GetPointF(long index, float value)
         {
             var X = displayResolutionX * index * zoomSizeX + startPoint;
-            var Y = displayResolutionY * value * zoomSizeY + fixPoint.Y * (1 - zoomSizeY);
+            var Y = displayResolutionY * Math.Max(MinAmplite, Math.Min(value, MaxAmplite)) * zoomSizeY - MinAmplite;
             return new System.Drawing.PointF((float)X, (float)Y);
+        }
+
+        private void DrawNet()
+        {
+            SpecCore.DrawOnMap(graphice =>
+            {
+
+            });
         }
     }
 }
